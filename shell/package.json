@@ -1,0 +1,21 @@
+{
+  "name": "shell",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node front/dist/index.js",
+    "dev": "ts-node front/src/index.ts",
+    "build-watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "typr": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "fs": "^0.0.1-security"
+  }
+}
