@@ -7,6 +7,7 @@
     "build": "tsc",
     "start": "node front/dist/index.js",
     "dev": "ts-node front/src/index.ts",
+    "start-backend": "uvicorn back.server:app --reload --port 3001",
     "build-watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.13.2",
-    "fs": "^0.0.1-security"
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1"
   }
 }

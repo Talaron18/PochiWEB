@@ -1,24 +1,18 @@
 import axios from "axios";
-import FormData from "form-data";
-import fs from "fs";
 
-async function getpearl(input: Promise<any>){
-    const payload = await input;
-    const response = await axios.postForm(
-        `https://api.stability.ai/v2beta/stable-image/generate/ultra`,
-        axios.toFormData(payload, new FormData()),
-        {
-            validateStatus:undefined,
-            responseType: "arraybuffer",
-            headers:{
-                Authorization: `Bearer sk-APIKEY`,
-                Accept:"image/*"
-            },
-        },
-    );
-    if(response.status === 200) {
-        fs.writeFileSync("./lighthouse.webp", Buffer.from(response.data));
+export async function pearlGen(username: string, input: Promise<string>) {
+    const prompt = await input;
+    const resp = await axios.post('/api/generate', { username, prompt }, { validateStatus: undefined });
+    if (resp.status === 200 && resp.data && resp.data.url) {
+        const url = resp.data.url;
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${username}.jpeg`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
     } else {
-        throw new Error(`${response.status}: ${response.data.toString()}`);
+        const msg = resp?.data?.error || `status ${resp.status}`;
+        throw new Error(`generate failed: ${msg}`);
     }
 }
