@@ -1,0 +1,80 @@
+/* ===========================
+   🌈 通用样式 + 动态渐变背景
+   =========================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Noto Sans SC", sans-serif;
+
+  /* 动态渐变背景动画 */
+  background: linear-gradient(120deg, #1AA5F8, #B8F3F7, #FBF7DE, #FFE4D1);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 液态玻璃容器 */
+.container {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 40px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* 输入框 */
+input {
+  width: 80%;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* 液态玻璃按钮 */
+button {
+  margin-top: 25px;
+  padding: 12px 25px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+button:hover { transform: scale(1.05); background: rgba(255,255,255,0.3); }
+button:active { transform: scale(0.97); background: rgba(255,255,255,0.2); }
+
+/* ===========================
+   📱 响应式设计
+   =========================== */
+@media screen and (max-width: 768px) {
+  .container { width: 90%; padding: 25px; }
+  input, button { width: 90%; }
+  h2 { font-size: 1.3em; }
+}
+@media screen and (max-width: 480px) {
+  .container { width: 95%; padding: 20px; }
+  button { font-size: 14px; padding: 12px; }
+}
