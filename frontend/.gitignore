@@ -1,0 +1,22 @@
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# Node / Python 环境
+node_modules/
+venv/
+__pycache__/
+
+# 私密配置
+.env
+.env.*
+
+# 构建产物
+dist/
+build/
+
+# 视频或大文件（建议放CDN）
+*.mp4
+*.mov
+*.avi
+*.zip
