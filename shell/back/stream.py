@@ -33,11 +33,12 @@ def handle_sock(sock, addr):
             receive_data = np.frombuffer(temp_data, dtype='uint8')  # 将获取到的字符流数据转换成1维数组
             print("转换后的数据大小：" + str(len(receive_data)))
             r_img = cv2.imdecode(receive_data, cv2.IMREAD_COLOR)  # 将数组解码成图像
+            gray=cv2.cvtColor(r_img,cv2.COLOR_BGR2GRAY)
+            _,thres=cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY)
+            
             # r_img = r_img.reshape(480, 640, 3)
             # r_img = r_img.reshape(320, 240, 3)
             t2 = int(round(time.time() * 1000))
-            fps = 1000//(t2-t1)
-            cv2.putText(r_img, "FPS" + str(fps), (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
             t=time.strftime("%Y%m%d%H%M%S", time.localtime())
             outdir=f"/home/main/temp"
             name=f"{t}.jpg"
